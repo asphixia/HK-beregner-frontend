@@ -1,0 +1,38 @@
+/* Centering the content in the container */
+.mainpage-container {
+    display: flex;
+    flex-direction: column; /* Stacks elements vertically */
+    align-items: center;    /* Centers items horizontally */
+    justify-content: center; /* Centers items vertically */
+    min-height: 100vh;      /* Takes full height of the viewport */
+    text-align: center;
+}
+
+/* Styling the paragraph and dropdown for spacing */
+.mainpage-container p {
+    margin: 0 0 10px 0; /* Adds some space below the paragraph */
+}
+
+select {
+    display: block; /* Ensures the dropdown appears on a new line */
+    margin-top: 5px; /* Adds space above the dropdown */
+    padding: 8px;    /* Adds padding for better appearance */
+    font-size: 1em;  /* Optional: Adjusts font size */
+}
+
+.form-group{
+    margin-bottom:15px; /* Adds space between form groups */
+
+}
+
+label {
+    display: block;
+    margin-bottom: 5px; /* Adds space below the label */
+}
+
+input[type="date"] {
+    padding:5px;
+    max-width:200px; /* Limits the width of the input */
+    box-sizing: border-box; /* Ensures padding is included in the width */
+    width:100%; /* Makes the input take full width */
+}
