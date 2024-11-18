@@ -1,4 +1,5 @@
 /* Centering the content in the container */
+
 .mainpage-container {
     display: flex;
     flex-direction: column; /* Stacks elements vertically */

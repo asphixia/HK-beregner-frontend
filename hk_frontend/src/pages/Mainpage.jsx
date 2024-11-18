@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import './Mainpage.css'; // Import CSS
+
+import './Mainpage.css';
+import Navbar from "./Navbar"; // Import CSS
 
 const Mainpage = () => {
-    //const [selectedRole, setSelectedRole] = useState("");
+    const [selectedRole, setSelectedRole] = useState("");
 
     const handleSelectionChange = (event) => {
         setSelectedRole(event.target.value);
@@ -10,6 +12,7 @@ const Mainpage = () => {
 
     return (
         <div className="mainpage">
+            <Navbar /> {/* The Navbar is included here */}
             <main className="main-content">
                 <section className="hero">
                     <div className="container">
@@ -22,16 +25,15 @@ const Mainpage = () => {
                             <option value="Mellemleder">Mellemleder</option>
                         </select>
                         <p>Indtast din startdato</p>
-                        {/* Form */}
                         <form>
-                            <label htmlFor="Startdato">Startdato:
+                            <div className="form-group">
+                                <label htmlFor="Startdato">Startdato:</label>
                                 <input type="date" id="Startdato" />
-                            </label>
-
-                            <label htmlFor="Slutdato">Slutdato:
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="Slutdato">Slutdato:</label>
                                 <input type="date" id="Slutdato" />
-                            </label>
-
+                            </div>
                         </form>
                     </div>
                 </section>
