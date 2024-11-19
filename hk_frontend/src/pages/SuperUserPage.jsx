@@ -1,12 +1,18 @@
 import React from 'react';
 import styles from '../SuperUserPage.module.css'; // Assuming you have this CSS module for styling
+import {useNavigate} from "react-router-dom";
 
 const SuperUserPage = () => {
+    const navigate = useNavigate();
+    const handleReturnToMain = () => {
+        navigate('/'); // Assumes the main page route is `/`
+    };
+
     return (
         <div className={styles.container}>
             <header className={styles.header}>
                 <h1>Superbruger Side</h1>
-                <button className={styles.logoutButton}>Log af</button>
+                <button onClick={handleReturnToMain} className={styles.logoutButton}>Log af</button>
             </header>
             <main className={styles.mainContent}>
                 <div className={styles.formGroup}>
