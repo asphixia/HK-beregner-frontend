@@ -7,6 +7,7 @@ import Header from "./pages/Header";
 import Navbar from "./pages/Navbar";
 import SuperUserPage from "./pages/SuperUserPage";
 import AdminPage from "./pages/AdminPage";
+import CalculatorPage from "./pages/CalculatorPage";
 
 
 const App = () => {
@@ -20,6 +21,7 @@ const App = () => {
                 <Route path="login" element={<LoginPage/>}/>
                 <Route path="superuser" element={<SuperUserPage/>}/>
                 <Route path="admin" element={<AdminPage/>}/>
+                <Route path="calculator" element={<CalculatorPage/>}/>
 
 
 
