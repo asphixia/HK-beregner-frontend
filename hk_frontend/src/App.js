@@ -8,6 +8,7 @@ import Navbar from "./pages/Navbar";
 import SuperUserPage from "./pages/SuperUserPage";
 import AdminPage from "./pages/AdminPage";
 import CalculatorPage from "./pages/CalculatorPage";
+import ResultPage from "./pages/ResultPage";
 
 
 const App = () => {
@@ -22,6 +23,7 @@ const App = () => {
                 <Route path="superuser" element={<SuperUserPage/>}/>
                 <Route path="admin" element={<AdminPage/>}/>
                 <Route path="calculator" element={<CalculatorPage/>}/>
+                <Route path="result" element={<ResultPage/>}/>
 
 
 
