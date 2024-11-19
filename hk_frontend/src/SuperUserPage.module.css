@@ -1,0 +1,103 @@
+.container {
+    font-family: Arial, sans-serif;
+    margin: 0 auto;
+    max-width: 800px;
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #0077b3; /* Adjust for HK.dk theme */
+    color: white;
+    padding: 10px 20px;
+}
+
+.mainContent {
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+}
+
+.formGroup {
+    margin-bottom: 20px;
+}
+
+.label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.subText {
+    font-size: 12px;
+    color: #555;
+}
+
+.input {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.textarea {
+    display: block;
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.saveButton,
+.cancelButton,
+.sendButton,
+.logoutButton,
+.saveChangesButton,
+.cancelChangesButton {
+    margin-right: 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.saveButton {
+    background-color: #4caf50; /* Green color */
+    color: white;
+}
+
+.cancelButton,
+.cancelChangesButton {
+    background-color: #f44336; /* Red color */
+    color: white;
+}
+
+.sendButton {
+    background-color: #0077b3; /* Blue color for sending */
+    color: white;
+}
+
+.logoutButton {
+    background-color: #ccc;
+    color: #333;
+}
+
+.saveChangesButton {
+    background-color: #4caf50;
+    color: white;
+}
+
+.saveButton:hover,
+.cancelButton:hover,
+.sendButton:hover,
+.logoutButton:hover,
+.saveChangesButton:hover,
+.cancelChangesButton:hover {
+    opacity: 0.8;
+}

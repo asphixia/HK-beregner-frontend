@@ -5,6 +5,7 @@ import Mainpage from './pages/Mainpage';
 import LoginPage from "./pages/LoginPage";
 import Header from "./pages/Header";
 import Navbar from "./pages/Navbar";
+import SuperUserPage from "./pages/SuperUserPage";
 
 
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
             <Routes>
                 <Route path="/" element={<Mainpage />} />
                 <Route path="login" element={<LoginPage/>}/>
+                <Route path="superuser" element={<SuperUserPage/>}/>
 
 
 
