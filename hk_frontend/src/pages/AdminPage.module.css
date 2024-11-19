@@ -1,0 +1,81 @@
+.container {
+    font-family: Arial, sans-serif;
+    margin: 0 auto;
+    max-width: 800px;
+    padding: 20px;
+}
+
+.header {
+    background-color: #0077b3; /* Adjust for HK.dk theme */
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+}
+
+.mainContent {
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+}
+
+.formGroup {
+    margin-bottom: 20px;
+}
+
+.sectionTitle {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.input {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.saveButton,
+.cancelButton,
+.returnButton,
+.saveChangesButton {
+    margin-right: 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.saveButton {
+    background-color: #4caf50; /* Green color for save */
+    color: white;
+}
+
+.cancelButton {
+    background-color: #f44336; /* Red color for cancel */
+    color: white;
+}
+
+.returnButton {
+    background-color: #ccc;
+    color: #333;
+}
+
+.saveChangesButton {
+    background-color: #4caf50;
+    color: white;
+}
+
+.saveButton:hover,
+.cancelButton:hover,
+.returnButton:hover,
+.saveChangesButton:hover {
+    opacity: 0.8;
+}
