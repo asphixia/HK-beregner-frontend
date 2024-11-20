@@ -5,18 +5,51 @@ import styles from '../Loginpage.module.css'; // Adjust path as needed
 const LoginPage = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [error,setError] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
+    const [rememberMe, setRememberMe] = useState(false);
     const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+
+    const API_URL = 'api/login';
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        if (username === 'admin' && password === 'adminpass') {
-            navigate('/admin');
-        } else if (username === 'superuser' && password === 'superpass') {
-            navigate('/superuser');
-        } else {
-            alert('Invalid username or password');
+        setIsLoading(true);
+        try {
+            if (!username || !password) {
+                throw new Error('Username and password are required');
+            }
+
+            const response = await fetch(API_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({username, password}),
+            });
+
+            if (!response.ok) {
+                throw new Error('Invalid username or password');
+            }
+
+            const data = await response.json();
+
+            if (data.role === 'admin') {
+                navigate('/admin');
+            } else if (data.role === 'superuser') {
+                navigate('/superuser');
+            } else {
+                navigate('/user');
+            }
+        } catch (error) {
+            setError(error.message);
+        } finally {
+            setIsLoading(false);
+
         }
     };
+
 
     const handleClearForm = () => {
         setUsername('');

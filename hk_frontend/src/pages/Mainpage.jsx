@@ -12,7 +12,7 @@ const Mainpage = () => {
 
     return (
         <div className="mainpage">
-            <Navbar /> {/* The Navbar is included here */}
+            <Navbar />
             <main className="main-content">
                 <section className="hero">
                     <div className="container">
