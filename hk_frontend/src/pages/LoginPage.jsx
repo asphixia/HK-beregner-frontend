@@ -1,60 +1,51 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // For navigation
+import { useNavigate } from 'react-router-dom';
 import styles from '../Loginpage.module.css'; // Adjust path as needed
 
 const LoginPage = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [error,setError] = useState(null);
-    const [isLoading, setIsLoading] = useState(false);
-    const [rememberMe, setRememberMe] = useState(false);
+    const [error, setError] = useState(''); // For error messages
     const navigate = useNavigate();
-
-
-    const API_URL = 'api/login';
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setIsLoading(true);
         try {
-            if (!username || !password) {
-                throw new Error('Username and password are required');
-            }
-
-            const response = await fetch(API_URL, {
+            const response = await fetch('http://localhost:8080/api/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({username, password}),
+                body: JSON.stringify({ username, password }),
             });
 
-            if (!response.ok) {
-                throw new Error('Invalid username or password');
-            }
+            if (response.ok) {
+                const data = await response.json();
+                // Store JWT in localStorage or sessionStorage
+                localStorage.setItem('jwt', data.token);
 
-            const data = await response.json();
-
-            if (data.role === 'admin') {
-                navigate('/admin');
-            } else if (data.role === 'superuser') {
-                navigate('/superuser');
+                // Navigate based on role or status
+                if (data.role === 'admin') {
+                    navigate('/admin');
+                } else if (data.role === 'superuser') {
+                    navigate('/superuser');
+                } else {
+                    navigate('/user');
+                }
             } else {
-                navigate('/user');
+                setError('Invalid username or password');
             }
-        } catch (error) {
-            setError(error.message);
-        } finally {
-            setIsLoading(false);
-
+        } catch (err) {
+            setError('An error occurred. Please try again.');
         }
     };
-
 
     const handleClearForm = () => {
         setUsername('');
         setPassword('');
-    }
+        setError('');
+    };
+
     const handleReturnToMain = () => {
         navigate('/'); // Assumes the main page route is `/`
     };
@@ -63,6 +54,7 @@ const LoginPage = () => {
         <div className={styles.loginContainer}>
             <div className={styles.loginCard}>
                 <h1 className={styles.loginTitle}>Login</h1>
+                {error && <p className={styles.errorMessage}>{error}</p>}
                 <form onSubmit={handleSubmit}>
                     <label htmlFor="username" className={styles.label}>Brugernavn</label>
                     <input
@@ -97,7 +89,7 @@ const LoginPage = () => {
                 </button>
 
                 <button onClick={handleReturnToMain} className={styles.returnButton}>
-                    Return til hovedsiden
+                    Retur til hovedsiden
                 </button>
             </div>
         </div>
