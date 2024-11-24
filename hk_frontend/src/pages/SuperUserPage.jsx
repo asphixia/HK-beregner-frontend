@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from '../SuperUserPage.module.css'; // Assuming you have this CSS module for styling
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const SuperUserPage = () => {
     const navigate = useNavigate();
@@ -16,29 +16,29 @@ const SuperUserPage = () => {
             </header>
             <main className={styles.mainContent}>
                 <div className={styles.formGroup}>
-                    <label className={styles.label}>Lave ny regel</label>
-                    <input type="text" className={styles.input} />
+                    <label htmlFor="createRuleInput" className={styles.label}>Lave ny regel</label>
+                    <input id="createRuleInput" type="text" className={styles.input} />
                     <button className={styles.saveButton}>Gem</button>
                     <button className={styles.cancelButton}>Fortryd</button>
                 </div>
                 <div className={styles.formGroup}>
-                    <label className={styles.label}>Opdatere regel</label>
-                    <input type="text" className={styles.input} />
+                    <label htmlFor="updateRuleInput" className={styles.label}>Opdatere regel</label>
+                    <input id="updateRuleInput" type="text" className={styles.input} />
                     <button className={styles.saveButton}>Gem</button>
                     <button className={styles.cancelButton}>Fortryd</button>
                 </div>
                 <div className={styles.formGroup}>
-                    <label className={styles.label}>Slet en regel</label>
-                    <input type="text" className={styles.input} />
+                    <label htmlFor="deleteRuleInput" className={styles.label}>Slet en regel</label>
+                    <input id="deleteRuleInput" type="text" className={styles.input} />
                     <button className={styles.saveButton}>Gem</button>
                     <button className={styles.cancelButton}>Fortryd</button>
                 </div>
                 <div className={styles.formGroup}>
-                    <label className={styles.label}>
+                    <label htmlFor="adminCaseInput" className={styles.label}>
                         Oprette sag til Admin<br />
                         <span className={styles.subText}>Husk at skrive id og logbog nummer i henvendelsen</span>
                     </label>
-                    <textarea className={styles.textarea}></textarea>
+                    <textarea id="adminCaseInput" className={styles.textarea}></textarea>
                     <button className={styles.sendButton}>Send</button>
                     <button className={styles.cancelButton}>Fortryd</button>
                 </div>
