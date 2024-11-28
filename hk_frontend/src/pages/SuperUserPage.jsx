@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../SuperUserPage.module.css'; // Assuming you have this CSS module for styling
+import styles from '../SuperUserPage.module.css';
 
 const SuperUserPage = () => {
     return (
@@ -46,3 +46,4 @@ const SuperUserPage = () => {
 };
 
 export default SuperUserPage;
+

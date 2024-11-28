@@ -24,9 +24,6 @@ const App = () => {
                 <Route path="admin" element={<AdminPage/>}/>
                 <Route path="calculator" element={<CalculatorPage/>}/>
                 <Route path="result" element={<ResultPage/>}/>
-
-
-
             </Routes>
         </Router>
     );

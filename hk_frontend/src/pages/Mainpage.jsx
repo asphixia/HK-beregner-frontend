@@ -1,17 +1,22 @@
 import React, { useState } from "react";
-import styles from "./Mainpage.module.css";
-import {useNavigate} from "react-router-dom"; // Import CSS Module
+import styles from "./Mainpage.module.css"; // Import your custom styles
+import { useNavigate } from "react-router-dom";
 
 const Mainpage = () => {
     const [selectedRole, setSelectedRole] = useState("");
     const navigate = useNavigate();
+
     const handleSelectionChange = (event) => {
         setSelectedRole(event.target.value);
     };
 
     const handleNextPage = () => {
         navigate("/calculator");
-    }
+    };
+
+    const handleNavigateToLogin = () => {
+        navigate("/login");
+    };
 
     return (
         <div className={styles.mainpageContainer}>
@@ -47,6 +52,11 @@ const Mainpage = () => {
                         </button>
                     </form>
                 </section>
+                <div className={styles.buttonContainer}>
+                    <button onClick={handleNavigateToLogin} className={styles.loginButton}>
+                        Login
+                    </button>
+                </div>
             </main>
             <footer className={styles.footer}>
                 <p>&copy; {new Date().getFullYear()} HK Danmark</p>

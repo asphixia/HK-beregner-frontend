@@ -85,6 +85,32 @@ input[type="date"] {
     background-color: #004a87;
 }
 
+/* Login button styling */
+.buttonContainer {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-around; /* Space out buttons evenly */
+    flex-wrap: wrap; /* Allow buttons to stack on small screens */
+    gap: 10px; /* Add spacing between buttons */
+}
+
+.loginButton {
+    background-color: #f8b400; /* HK.dk yellow */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+}
+
+.loginButton:hover {
+    background-color: #d89a00; /* Darker shade on hover */
+}
+
 /* Footer styling */
 .footer {
     background-color: #333;

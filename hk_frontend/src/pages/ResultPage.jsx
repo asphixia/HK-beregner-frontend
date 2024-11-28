@@ -21,8 +21,8 @@ const ResultPage = () => {
                 const response = await new Promise((resolve) => {
                     setTimeout(() => {
                         resolve({
-                            statement: 'Du skal have 15677kr i Juni',
-                            extraInfo: 'Du har arbejdet for meget i Juni med x antal timer ift §1.2',
+                            statement: 'Du skal have 15677kr i November',
+                            extraInfo: 'Du har arbejdet for meget i November med x antal timer ift §1.2',
                         });
                     }, 1000); // Simulated delay
                 });

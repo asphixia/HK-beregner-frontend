@@ -1,66 +1,129 @@
+/* Container styling for the page */
 .container {
-    font-family: Arial, sans-serif;
+    width: 80%;
     margin: 0 auto;
-    max-width: 800px;
     padding: 20px;
+    font-family: Arial, sans-serif;
+    color: #333;
 }
 
+/* Header styling */
 .header {
-    background-color: #0077b3; /* Adjust for HK.dk theme */
-    color: white;
-    padding: 10px 20px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    font-size: 24px;
+    color: #333;
+}
+
+/* Main content styling */
+.mainContent {
+    margin-top: 20px;
+}
+
+.mainContent h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
     text-align: center;
 }
 
-.mainContent {
-    padding: 20px;
-    background-color: #f4f4f4;
-    border-radius: 8px;
+/* Row styling for inputs and buttons */
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
 }
 
+/* Form group styling */
 .formGroup {
     margin-bottom: 20px;
 }
 
 .label {
     display: block;
-    font-size: 16px;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
+    font-weight: bold;
 }
 
 .input {
-    display: block;
-    width: 100%;
+    flex: 1;
     padding: 10px;
-    margin-bottom: 10px;
+    font-size: 14px;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
 
+/* Button group for aligning buttons */
+.buttonGroup {
+    display: flex;
+    gap: 10px;
+}
+
+/* Buttons styling */
+.addButton,
+.removeButton {
+    padding: 8px 12px;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+}
+
+.addButton {
+    background-color: #4caf50;
+    color: white;
+}
+
+.removeButton {
+    background-color: #f44336;
+    color: white;
+}
+
+.addButton:hover,
+.removeButton:hover {
+    opacity: 0.8;
+}
+
+/* Action buttons for navigation */
 .actionButtons {
     display: flex;
     justify-content: space-between;
+    margin-top: 20px;
 }
 
 .backButton,
 .submitButton {
     padding: 10px 20px;
+    font-size: 16px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
 }
 
 .backButton {
-    background-color: #ccc;
-    color: #333;
+    background-color: #f0ad4e;
+    color: white;
 }
 
 .submitButton {
-    background-color: #0077b3;
+    background-color: #007bff;
     color: white;
 }
 
 .backButton:hover,
 .submitButton:hover {
     opacity: 0.8;
+}
+
+/* Heading styling */
+h3 {
+    font-size: 18px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: #555;
 }
