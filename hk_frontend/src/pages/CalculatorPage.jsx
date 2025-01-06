@@ -1,245 +1,179 @@
 import React, { useState } from 'react';
-import styles from './CalculatorPage.module.css';
-import { useNavigate } from 'react-router-dom';
+import '../styling/CalculatorPageStyling.css';
+import { calculateExpectedSalary } from "../api/EmployeeAPI";
 
 const CalculatorPage = () => {
-    const [startSlutEntries, setStartSlutEntries] = useState([{ startDato: '', slutDato: '' }]);
-    const [ferieEntries, setFerieEntries] = useState([{ ferieStart: '', ferieSlut: '' }]);
-    const [sygdomEntries, setSygdomEntries] = useState([{ sygdomStart: '', sygdomSlut: '' }]);
-    const [vagtændring, setVagtændring] = useState('');
-    const [file, setFile] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  
+  const [employeeData, setEmployeeData] = useState({
+    hkMemberRole: '',
+    hoursWorked: 0,
+    averageWeeklyHours: 37,
+    overtimeEligible: false,
+    calculatedSalary: 0,
+    hourlyRate: 0,
+    overtimeHours: 0,
+    holidayReductionHours: 0,
+    weekendWorkAllowed: false,
+    flexiblePartTime: false,
+    maxWeeklyHours: 0,
+    maxDailyHours: 0
+  });
 
-    const navigate = useNavigate();
+  const handleInputChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setEmployeeData(prev => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : 
+              type === 'number' ? parseFloat(value) || 0 : value
+    }));
+  };
 
-    const handleFileUpload = (e) => {
-        setFile(e.target.files[0]);
-    };
-
-    // Dynamic handling for StartDato and SlutDato
-    const handleAddStartSlut = () => {
-        setStartSlutEntries([...startSlutEntries, { startDato: '', slutDato: '' }]);
-    };
-
-    const handleRemoveStartSlut = (index) => {
-        setStartSlutEntries(startSlutEntries.filter((_, i) => i !== index));
-    };
-
-    const handleStartSlutChange = (index, field, value) => {
-        const updatedEntries = startSlutEntries.map((entry, i) =>
-            i === index ? { ...entry, [field]: value } : entry
-        );
-        setStartSlutEntries(updatedEntries);
-    };
-
-    // Dynamic handling for Ferie
-    const handleAddFerie = () => {
-        setFerieEntries([...ferieEntries, { ferieStart: '', ferieSlut: '' }]);
-    };
-
-    const handleRemoveFerie = (index) => {
-        setFerieEntries(ferieEntries.filter((_, i) => i !== index));
-    };
-
-    const handleFerieChange = (index, field, value) => {
-        const updatedFerieEntries = ferieEntries.map((ferie, i) =>
-            i === index ? { ...ferie, [field]: value } : ferie
-        );
-        setFerieEntries(updatedFerieEntries);
-    };
-
-    // Dynamic handling for Sygdom
-    const handleAddSygdom = () => {
-        setSygdomEntries([...sygdomEntries, { sygdomStart: '', sygdomSlut: '' }]);
-    };
-
-    const handleRemoveSygdom = (index) => {
-        setSygdomEntries(sygdomEntries.filter((_, i) => i !== index));
-    };
-
-    const handleSygdomChange = (index, field, value) => {
-        const updatedSygdomEntries = sygdomEntries.map((sygdom, i) =>
-            i === index ? { ...sygdom, [field]: value } : sygdom
-        );
-        setSygdomEntries(updatedSygdomEntries);
-    };
-
-    const formatDate = (date) => {
-        if (!date) return '';
-        const [year, month, day] = date.split('-');
-        return `${day}/${month}/${year}`;
-    };
-
-    const handleSubmit = () => {
-        console.log('Submitted form data:', {
-            startSlutEntries,
-            ferieEntries,
-            sygdomEntries,
-            vagtændring,
-            file,
-        });
-    };
-
-    const handleBackToMain = () => {
-        navigate('/');
-        console.log('Navigate back to main page');
-    };
-
-    const handleResultPage = () => {
-        navigate('/result');
+  const handleCalculate = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const result = await calculateExpectedSalary(employeeData);
+      setEmployeeData(result);
+    } catch (err) {
+      setError(err.message);
+      console.error('Fejl ved beregning:', err);
+    } finally {
+      setLoading(false);
     }
+  };
 
-    return (
-        <div className={styles.container}>
-            <header className={styles.header}>
-                <h1>HK</h1>
-            </header>
-            <main className={styles.mainContent}>
-                <h2>Indtast din vagtplan med afvigelser</h2>
-
-                {/* StartDato and SlutDato Section */}
-                <h3>StartDato og SlutDato</h3>
-                {startSlutEntries.map((entry, index) => (
-                    <div key={index} className={styles.row}>
-                        <input
-                            type="date"
-                            className={styles.input}
-                            value={entry.startDato}
-                            onChange={(e) =>
-                                handleStartSlutChange(index, 'startDato', e.target.value)
-                            }
-                        />
-                        <span className={styles.separator}>til</span>
-                        <input
-                            type="date"
-                            className={styles.input}
-                            value={entry.slutDato}
-                            onChange={(e) =>
-                                handleStartSlutChange(index, 'slutDato', e.target.value)
-                            }
-                        />
-                        <div className={styles.buttonGroup}>
-                            <button onClick={handleAddStartSlut} className={styles.addButton}>
-                                Tilføj
-                            </button>
-                            <button
-                                onClick={() => handleRemoveStartSlut(index)}
-                                className={styles.removeButton}
-                            >
-                                Fjern
-                            </button>
-                        </div>
-                    </div>
-                ))}
-                {startSlutEntries.map((entry, index) =>
-                    entry.startDato && entry.slutDato ? (
-                        <p key={index} className={styles.startSlutText}>
-                            Din periode er fra {formatDate(entry.startDato)} til{' '}
-                            {formatDate(entry.slutDato)}
-                        </p>
-                    ) : null
-                )}
-
-                {/* Ferie Section */}
-                <h3>Ferie</h3>
-                {ferieEntries.map((ferie, index) => (
-                    <div key={index} className={styles.row}>
-                        <input
-                            type="date"
-                            className={styles.input}
-                            value={ferie.ferieStart}
-                            onChange={(e) =>
-                                handleFerieChange(index, 'ferieStart', e.target.value)
-                            }
-                        />
-                        <span className={styles.separator}>til</span>
-                        <input
-                            type="date"
-                            className={styles.input}
-                            value={ferie.ferieSlut}
-                            onChange={(e) =>
-                                handleFerieChange(index, 'ferieSlut', e.target.value)
-                            }
-                        />
-                        <div className={styles.buttonGroup}>
-                            <button onClick={handleAddFerie} className={styles.addButton}>
-                                Tilføj
-                            </button>
-                            <button onClick={() => handleRemoveFerie(index)} className={styles.removeButton}>
-                                Fjern
-                            </button>
-                        </div>
-                    </div>
-                ))}
-                {ferieEntries.map((ferie, index) =>
-                    ferie.ferieStart && ferie.ferieSlut ? (
-                        <p key={index} className={styles.ferieText}>
-                            Din ferie er fra {formatDate(ferie.ferieStart)} til{' '}
-                            {formatDate(ferie.ferieSlut)}
-                        </p>
-                    ) : null
-                )}
-
-                {/* Sygdom Section */}
-                <h3>Sygdom</h3>
-                {sygdomEntries.map((sygdom, index) => (
-                    <div key={index} className={styles.row}>
-                        <input
-                            type="date"
-                            className={styles.input}
-                            value={sygdom.sygdomStart}
-                            onChange={(e) =>
-                                handleSygdomChange(index, 'sygdomStart', e.target.value)
-                            }
-                        />
-                        <span className={styles.separator}>til</span>
-                        <input
-                            type="date"
-                            className={styles.input}
-                            value={sygdom.sygdomSlut}
-                            onChange={(e) =>
-                                handleSygdomChange(index, 'sygdomSlut', e.target.value)
-                            }
-                        />
-                        <div className={styles.buttonGroup}>
-                            <button onClick={handleAddSygdom} className={styles.addButton}>
-                                Tilføj
-                            </button>
-                            <button
-                                onClick={() => handleRemoveSygdom(index)}
-                                className={styles.removeButton}
-                            >
-                                Fjern
-                            </button>
-                        </div>
-                    </div>
-                ))}
-                {sygdomEntries.map((sygdom, index) =>
-                    sygdom.sygdomStart && sygdom.sygdomSlut ? (
-                        <p key={index} className={styles.sygdomText}>
-                            Din sygdom er fra {formatDate(sygdom.sygdomStart)} til{' '}
-                            {formatDate(sygdom.sygdomSlut)}
-                        </p>
-                    ) : null
-                )}
-
-                {/* File Upload Section */}
-                <div className={styles.formGroup}>
-                    <label className={styles.label}>Upload din vagtplan med afvigelser</label>
-                    <input type="file" className={styles.input} onChange={handleFileUpload} />
-                </div>
-
-                {/* Action Buttons */}
-                <div className={styles.actionButtons}>
-                    <button onClick={handleBackToMain} className={styles.backButton}>
-                        Tilbage til Startside
-                    </button>
-                    <button onClick={handleResultPage} className={styles.submitButton}>
-                        Videre til afgørelse
-                    </button>
-                </div>
-            </main>
+  return (
+    <div className="salary-calculator">
+      <h2>Beregn Forventet Løn</h2>
+      
+      <div className="calculator-section">
+        <h3>Medarbejder Information</h3>
+        <div className="input-row">
+          <div className="input-group">
+            <label>Rolle</label>
+            <select
+              name="hkMemberRole"
+              value={employeeData.hkMemberRole}
+              onChange={handleInputChange}
+            >
+              <option value="">Vælg rolle</option>
+              <option value="MIDDLEMANAGER">Mellemleder</option>
+              <option value="STOREWORKER">Butiksmedarbejder</option>
+              <option value="STUDENT">Studerende</option>
+              <option value="PARTTIMEWORKER">Deltidsansat</option>
+            </select>
+          </div>
         </div>
-    );
+
+        <div className="input-row">
+          <div className="input-group">
+            <label>Arbejdstimer (pr. måned)</label>
+            <input
+              type="number"
+              name="hoursWorked"
+              value={employeeData.hoursWorked}
+              onChange={handleInputChange}
+              min="0"
+            />
+          </div>
+          
+          <div className="input-group">
+            <label>Gennemsnitlig ugentlig arbejdstid</label>
+            <input
+              type="number"
+              name="averageWeeklyHours"
+              value={employeeData.averageWeeklyHours}
+              onChange={handleInputChange}
+              min="0"
+              max="48"
+            />
+          </div>
+        </div>
+
+        <div className="input-row">
+          <div className="input-group">
+            <label>Overarbejdstimer</label>
+            <input
+              type="number"
+              name="overtimeHours"
+              value={employeeData.overtimeHours}
+              onChange={handleInputChange}
+              min="0"
+            />
+          </div>
+        </div>
+
+        <div className="checkbox-row">
+          <div className="checkbox-group">
+            <input
+              type="checkbox"
+              name="overtimeEligible"
+              checked={employeeData.overtimeEligible}
+              onChange={handleInputChange}
+            />
+            <label>Berettiget til overarbejde</label>
+          </div>
+
+          <div className="checkbox-group">
+            <input
+              type="checkbox"
+              name="weekendWorkAllowed"
+              checked={employeeData.weekendWorkAllowed}
+              onChange={handleInputChange}
+            />
+            <label>Weekendarbejde tilladt</label>
+          </div>
+
+          <div className="checkbox-group">
+            <input
+              type="checkbox"
+              name="flexiblePartTime"
+              checked={employeeData.flexiblePartTime}
+              onChange={handleInputChange}
+            />
+            <label>Fleksibel deltidsansat</label>
+          </div>
+        </div>
+
+        {error && <div className="error-message">{error}</div>}
+
+        <button 
+          onClick={handleCalculate}
+          disabled={loading}
+          className="calculate-button"
+        >
+          {loading ? 'Beregner...' : 'Beregn Forventet Løn'}
+        </button>
+
+        {employeeData.calculatedSalary > 0 && (
+          <div className="salary-result">
+            <h3>Beregnet Løn</h3>
+            <div className="result-grid">
+              <div className="result-item">
+                <label>Grundløn:</label>
+                <span>{employeeData.calculatedSalary.toFixed(2)} DKK</span>
+              </div>
+              <div className="result-item">
+                <label>Timeløn:</label>
+                <span>{employeeData.hourlyRate.toFixed(2)} DKK/time</span>
+              </div>
+              <div className="result-item">
+                <label>Overarbejdstimer:</label>
+                <span>{employeeData.overtimeHours} timer</span>
+              </div>
+              <div className="result-item">
+                <label>Søgnehelligdagsreduktion:</label>
+                <span>{employeeData.holidayReductionHours} timer</span>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
 };
+
 
 export default CalculatorPage;

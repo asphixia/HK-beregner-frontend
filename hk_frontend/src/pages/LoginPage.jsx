@@ -1,74 +1,41 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // For navigation
-import styles from '../Loginpage.module.css'; // Adjust path as needed
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { login } from '../api/LoginAPI';
+import LoginForm from '../components/LoginForm';
+import { jwtDecode } from 'jwt-decode';
+import '../App.css';
 
 const LoginPage = () => {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (username === 'admin' && password === 'adminpass') {
-            navigate('/admin');
-        } else if (username === 'superuser' && password === 'superpass') {
-            navigate('/superuser');
-        } else {
-            alert('Invalid username or password');
-        }
-    };
+  const handleLogin = async (credentials) => {
+    try {
+      const token = await login(credentials);
+      localStorage.setItem('token', token);
 
-    const handleClearForm = () => {
-        setUsername('');
-        setPassword('');
+      const decodedToken = jwtDecode(token);
+      const role = decodedToken.role;
+
+      if (role === "ADMIN") {
+        navigate("/admin");
+      } else if (role === "SUPERUSER") {
+        navigate("/superuser");
+      }
+    } catch (error) {
+      console.error("Login failed:", error);
     }
-    const handleReturnToMain = () => {
-        navigate('/'); // Assumes the main page route is `/`
-    };
+  };
 
-    return (
-        <div className={styles.loginContainer}>
-            <div className={styles.loginCard}>
-                <h1 className={styles.loginTitle}>Login</h1>
-                <form onSubmit={handleSubmit}>
-                    <label htmlFor="username" className={styles.label}>Brugernavn</label>
-                    <input
-                        type="text"
-                        id="username"
-                        name="username"
-                        className={styles.input}
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                        required
-                    />
-
-                    <label htmlFor="password" className={styles.label}>Adgangskode</label>
-                    <input
-                        type="password"
-                        id="password"
-                        name="password"
-                        className={styles.input}
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
-
-                    <button type="submit" className={styles.loginButton}>Log ind</button>
-                </form>
-                <p className={styles.loginFooter}>
-                    Har du glemt din adgangskode? <a href="#">Klik her</a>
-                </p>
-
-                <button onClick={handleClearForm} className={styles.clearButton}>
-                    Fortryd
-                </button>
-
-                <button onClick={handleReturnToMain} className={styles.returnButton}>
-                    Return til hovedsiden
-                </button>
-            </div>
-        </div>
-    );
+  return (
+    <div className="login-page">
+      <div className="login-container">
+        <h1 className="login-title">Login</h1>
+        <p className="login-description">Welcome to HK Salary Calculator. Please log in to continue.</p>
+        <LoginForm onLogin={handleLogin} />
+        <footer className="login-footer">© 2024 HK Salary Calculator</footer>
+      </div>
+    </div>
+  );
 };
 
 export default LoginPage;
