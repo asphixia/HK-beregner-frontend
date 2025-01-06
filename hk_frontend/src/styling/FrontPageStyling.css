@@ -1,0 +1,102 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+  }
+  
+  .frontpage {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+  }
+  
+  .frontpage-header {
+    background-color: #007acc;
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+  }
+  
+  .frontpage-header h1 {
+    margin: 0;
+    font-size: 36px;
+    font-weight: bold;
+  }
+  
+  .frontpage-header p {
+    font-size: 18px;
+    margin-top: 10px;
+  }
+  
+  .frontpage-content {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .feature-section {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .feature-section h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+  
+  .feature-section ul {
+    list-style: none;
+    padding: 0;
+    font-size: 18px;
+    color: #555;
+  }
+  
+  .feature-section ul li {
+    margin: 10px 0;
+  }
+  
+  .action-section {
+    text-align: center;
+  }
+  
+  .action-section h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .action-button {
+    background-color: #007acc;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 15px 30px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .action-button:hover {
+    background-color: #005fa3;
+  }
+  
+  .frontpage-footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+  

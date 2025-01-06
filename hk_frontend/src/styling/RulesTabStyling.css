@@ -1,0 +1,51 @@
+
+.rules-tab {
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .rules-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 16px;
+    color: #004b87; 
+    border-bottom: 2px solid #004b87;
+    padding-bottom: 8px;
+  }
+  
+  .rules-error {
+    color: red;
+    font-size: 1rem;
+    margin-bottom: 16px;
+  }
+  
+  .rules-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .rules-item {
+    padding: 12px 16px;
+    margin-bottom: 8px;
+    background: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: background 0.3s, transform 0.3s;
+  }
+  
+  .rules-item:hover {
+    background: #e6f7ff;
+    transform: translateY(-2px);
+  }
+  
+  .rules-empty {
+    font-size: 1rem;
+    color: #888;
+    text-align: center;
+    margin-top: 20px;
+  }
+  

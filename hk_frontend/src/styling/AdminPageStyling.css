@@ -1,0 +1,58 @@
+
+.admin-page {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    padding: 20px;
+    background: #f8f9fa;
+    min-height: 100vh;
+  }
+  
+  .admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .admin-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #004b87;
+  }
+  
+  .admin-tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #ccc;
+  }
+  
+  .admin-tab {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    font-size: 1rem;
+    color: #555;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: color 0.3s ease, border-bottom 0.3s ease;
+  }
+  
+  .admin-tab:hover {
+    color: #004b87;
+  }
+  
+  .active-tab {
+    color: #004b87;
+    border-bottom: 2px solid #004b87;
+    font-weight: bold;
+  }
+  
+  .admin-content {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+  }
+  

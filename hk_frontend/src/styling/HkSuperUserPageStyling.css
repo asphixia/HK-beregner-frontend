@@ -1,0 +1,147 @@
+
+.form-group {
+    margin-bottom: 16px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .condition-builder, .action-builder {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .success-message {
+    color: green;
+    font-weight: bold;
+  }
+  
+  .error-message {
+    color: red;
+    font-weight: bold;
+  }
+
+  .rule-builder {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  h2 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 24px;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #444;
+  }
+  
+  input, select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  .row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    align-items: center;
+  }
+  
+  .inputs-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    flex: 1;
+  }
+  
+  .remove-button {
+    background: none;
+    border: none;
+    color: #ff4444;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 5px 10px;
+  }
+  
+  .remove-button:hover {
+    background: #ffeeee;
+    border-radius: 4px;
+  }
+  
+  .add-button {
+    background: none;
+    border: none;
+    color: #2196f3;
+    cursor: pointer;
+    padding: 8px;
+    text-align: left;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  .add-button:hover {
+    background: #e3f2fd;
+    border-radius: 4px;
+  }
+  
+  .submit-button {
+    width: 100%;
+    background: #2196f3;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+  
+  .submit-button:hover {
+    background: #1976d2;
+  }
+  
+  .section {
+    margin-bottom: 30px;
+  }
+  
+  @media (max-width: 768px) {
+    .inputs-container {
+      grid-template-columns: 1fr;
+    }
+    
+    .row {
+      flex-direction: column;
+    }
+    
+    .remove-button {
+      align-self: flex-end;
+    }
+  }
+  

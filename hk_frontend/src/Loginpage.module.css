@@ -1,0 +1,106 @@
+.loginContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    margin: 0 auto;
+    height: 100vh;
+}
+
+.loginCard {
+    background-color: #fff;
+    border: 1px solid #dcdcdc;
+    border-radius: 8px;
+    padding: 20px 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adjust shadow size and opacity */
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box; /* Ensures padding and borders are included in the element's width and height */
+}
+
+.loginTitle {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #2b2b2b;
+}
+
+.label {
+    font-weight: 500;
+    margin-bottom: 5px;
+    display: block;
+    color: #555;
+}
+
+.input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.loginButton {
+    background-color: #0077b3; /* HK.dk primary color */
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.loginButton:hover {
+    background-color: #005a86;
+}
+
+.loginFooter {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.loginFooter a {
+    color: #0077b3;
+    text-decoration: none;
+}
+
+.loginFooter a:hover {
+    text-decoration: underline;
+}
+
+.returnButton {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #0077b3; /* Adjust to match your theme */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+}
+
+.returnButton:hover {
+    background-color: #005a86; /* Hover effect */
+}
+
+.clearButton {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #f44336; /* Red color for clear button */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+}
+
+.clearButton:hover {
+    background-color: #d32f2f; /* Darker red on hover */
+}
